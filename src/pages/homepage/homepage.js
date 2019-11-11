@@ -4,15 +4,18 @@ import Directory from '../../components/directory/directory'
 
 import './homepage.scss'
 
-const Homepage=()=>(
+const Homepage=({history})=>{
 
-  <div className='homepage'>
-  <div className='directory-menu'>
+  console.log(history)
 
-  <Directory/>
 
-  </div>
-  </div>
-)
+  return (
+
+    <div className='homepage'>
+    <Directory />
+
+    </div>
+  )
+}
 
 export default Homepage
