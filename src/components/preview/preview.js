@@ -3,6 +3,7 @@ import React from 'react'
 import CollectionItem from '../item/item'
 
 import './preview.scss'
+
 const CollectionPreview=({title,items})=>(
   <div className='collection-preview' >
 
