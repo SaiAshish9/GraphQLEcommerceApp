@@ -46,7 +46,7 @@ this.setState({email:'',password:''})
   render() {
     return (
       <div className='sign-in'>
-        <h2>I already have an account</h2>
+        <h2> I already have an account</h2>
         <span>Sign in with your email and password</span>
 
         <form onSubmit={this.handleSubmit}>
@@ -68,7 +68,7 @@ this.setState({email:'',password:''})
           />
 
         <div className='buttons'>
-          <CustomButton type='submit'> Sign in </CustomButton>
+          <CustomButton type='submit'> Sign In  </CustomButton>
             <CustomButton onClick={signInWithGoogle}
                isGoogleSignIn
               style={{marginLeft:"5px"}}>

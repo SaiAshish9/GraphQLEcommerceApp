@@ -67,7 +67,7 @@ render(){
   const {displayName,email,password,confirmPassword} = this.state
   return(
 
-  <div className='sign-up'>
+  <div className='sign-up' style={{marginLeft:"50px"}}>
 
 <h2 className='title'>I don't have a account</h2>
 
