@@ -27,7 +27,7 @@ CONTACT
 SIGN OUT
 </div>
   :
-  <Link className='option'  to='/sigin'>
+  <Link className='option'  to='/signin'>
 
 SIGN IN
 
