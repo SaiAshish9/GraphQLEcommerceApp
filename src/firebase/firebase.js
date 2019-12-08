@@ -3,7 +3,7 @@ import 'firebase/firestore'
 import 'firebase/auth'
 
 const config= {
-  apiKey: "AIzaSyCGcIVOZoE2UZIIzGIis1hwM_CZLbJRVKc",
+  apiKey: "",
   authDomain: "graphqldb.firebaseapp.com",
   databaseURL: "https://graphqldb.firebaseio.com",
   projectId: "graphqldb",
