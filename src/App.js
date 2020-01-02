@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect} from 'react';
 import './App.css';
 import Homepage from './pages/homepage/homepage'
 import {Switch,Route,Link,Redirect} from 'react-router-dom'
@@ -11,16 +11,25 @@ import { createStructuredSelector} from 'reselect'
 
 
 import { setCurrentUser} from './redux/user/user-actions'
+
+import { checkUserSession } from './redux/user/user-actions'
+
 import { connect } from 'react-redux'
+
+// import { selectCollectionsForPreview} from './redux/shop/shop-selectors'
+
 
 import Header from './components/header/header'
 import SignIn from './pages/sign-in-and-sign-up/sign-in-and-sign-up'
 
-import {auth,createUserProfileDocument} from './firebase/firebase'
+import {auth,createUserProfileDocument
+  // ,addCollectionAndItems
+} from './firebase/firebase'
 
 import { selectCurrentUser }  from './redux/user/user-selectors'
 
-class App extends React.Component {
+// class App extends React.Component
+const App =({checkUserSession,currentUser})=> {
 
 // constructor(){
 //   super()
@@ -28,26 +37,25 @@ class App extends React.Component {
 //     currentUser:null
 //   }
 // }
+// Observable pattern
+// unsubscribeFromAuth=null
 
-unsubscribeFromAuth=null
-
-
-componentDidMount(){
-
-
-  const {setCurrentUser}=this.props
-this.unsubscribeFromAuth=  auth.onAuthStateChanged(async user=>{
-    // this.setState({currentUser:user})
-    if(user){
-      const userRef= await createUserProfileDocument(user)
-
-      userRef.onSnapshot(snapShot=>{
+// componentDidMount(){
 
 
-setCurrentUser({
-  id:snapShot.id,
-       ...snapShot.data()
-})
+// checkUserSession()
+  // ,collectionsArray
+//
+//   const {setCurrentUser}=this.props
+// this.unsubscribeFromAuth=  auth.onAuthStateChanged(async user=>{
+//     // this.setState({currentUser:user})
+//     if(user){
+//       const userRef= await createUserProfileDocument(user)
+//       userRef.onSnapshot(snapShot=>{
+// setCurrentUser({
+//   id:snapShot.id,
+//        ...snapShot.data()
+// })
 
 
       //   this.setState({
@@ -60,19 +68,25 @@ setCurrentUser({
       //   //   console.log(this.state);
       //   // }
       // )
-      })
-    }
-setCurrentUser(user)
-  })
-}
+//       })
+//     }
+// // setCurrentUser(user)
+// // addCollectionAndItems('collections',collectionsArray.map(({title,items}) => ({title,items}) ))
+//   })
+// }
 
-componentWillUnmount(){
-this.unsubscribeFromAuth()
-}
+// componentWillUnmount(){
+// this.unsubscribeFromAuth()
+// }
 
 
+  useEffect(()=>{
+    checkUserSession()
+  },[checkUserSession])
 
-  render(){
+//renders only once
+
+  // render(){
 
     return (
     <div>
@@ -81,7 +95,7 @@ this.unsubscribeFromAuth()
 
           <Route exact path='/' component={Homepage}/>
           <Route  path='/shop' component={ShopPage}/>
-          <Route  exact path='/signin' component={SignIn} render={()=>this.props.currentUser?(<Redirect to='/' />):(<SignIn />)
+          <Route  exact path='/signin' component={SignIn} render={()=>currentUser?(<Redirect to='/' />):(<SignIn />)
 
           }/>
         <Route  exact path='/checkout' component={CheckoutPage} />
@@ -91,19 +105,22 @@ this.unsubscribeFromAuth()
     </div>
     );
 
-  }
+  // }
 
 }
 // currentUser={this.state.currentUser}
 
 const mapStateToProps= createStructuredSelector({
   currentUser: selectCurrentUser
+  // ,collectionsArray: selectCollectionsForPreview
+})
+//
+// const mapDispatchToProps= dispatch =>({
+// setCurrentUser:user=>dispatch(setCurrentUser(user))
+// })
+
+const mapDispatchToProps=dispatch=>({
+  checkUserSession:()=>dispatch(checkUserSession())
 })
 
-const mapDispatchToProps= dispatch =>({
-setCurrentUser:user=>dispatch(setCurrentUser(user))
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);

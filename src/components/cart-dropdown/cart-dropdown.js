@@ -40,8 +40,14 @@ const CartDropDown =({cartItems,history,dispatch})=>(
 
 // {cart:{cartItems}}
 
+// const mapStateToProps = (state) => ({
+//   cartItems:selectCartItems(state)
+// })
+
 const mapStateToProps =createStructuredSelector({
   cartItems:selectCartItems
 })
 
+//withRouter --> history
+// connect will pass all dispatch props if not supplied
 export default withRouter(connect(mapStateToProps)(CartDropDown))
