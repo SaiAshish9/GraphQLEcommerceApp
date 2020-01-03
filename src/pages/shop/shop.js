@@ -1,6 +1,9 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
+
+import {withRouter} from 'react-router-dom'
+
 // import { createStructuredSelector } from 'reselect'
 
 import { fetchCollectionStart} from '../../redux/shop/shop-actions'
@@ -103,4 +106,4 @@ const mapDispatchToProps=dispatch=>({
 //   dispatch(updateCollections(collectionsMap))
 })
 
-export default connect(null,mapDispatchToProps)(ShopPage)
+export default withRouter(connect(null,mapDispatchToProps)(ShopPage))

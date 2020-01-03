@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import CollectionItem from '../../components/item/item'
 
 
@@ -8,6 +8,9 @@ import { selectCollection} from '../../redux/shop/shop-selectors'
 
 import './collection.scss'
 
+import { firestore } from '../../firebase/firebase'
+
+import collection from '../../redux/shop/data'
 
 import {
   CollectionPageContainer,
@@ -15,20 +18,74 @@ import {
   CollectionItemsContainer
 } from './collection.styles';
 
-const CollectionPage = ({ collection }) => {
-  const { title, items } = collection;
+
+
+const CollectionPage = ({ collection,match }) => {
+
+// const {title,items} = collection
+
+  // const [title,setTitle]=useState(required.title)
+  // const [items,setItems]=useState([])
+  // const [url,setUrl]=useState(match.params.collectionId)
+
+
+// console.log(match.params.collectionId);
+
+// componentWillUnmount
+//
+// useEffect(()=>{
+// console.log('i am subscribing');
+// const unsubscribeFromCollections=firestore
+// .collection('collections')
+// .onSnapShot(snapShot=>console.log(snapShot))
+//
+//   return ()=>{
+//     console.log('i am unsubscribing');
+//
+// unsubscribeFromCollections()
+//   }
+// },[])
+
+// useEffect(()=>{
+//   let {title,items} = required
+//   console.log(required);
+// // },[])
+// useEffect(()=>{
+// //   if(title)
+// // {
+// let x =  async () => {
+// let y= await setUrl(match.params.collectionId)
+//
+// console.log(y);
+// let resp=  await required.find(x=> x.id=url)
+//  setTitle(resp.title)
+//  setItems(resp.items)
+//  console.log(resp.title);
+// }
+// x()
+//
+// // }
+// })
+
+console.log(collection);
+
   return (
+
+
+
+
     <CollectionPageContainer>
-      <CollectionTitle>{title}</CollectionTitle>
+      <CollectionTitle>title</CollectionTitle>
       <CollectionItemsContainer>
-        {items.map(item => (
-          <CollectionItem key={item.id} item={item} />
-        ))}
+
       </CollectionItemsContainer>
     </CollectionPageContainer>
   );
 };
 
+// {items.map(item => (
+//   <CollectionItem key={item.id} item={item} />
+// ))}
 // const CollectionPage=({collection})=>{
 //   console.log(collection);
 // return(
@@ -43,7 +100,7 @@ const CollectionPage = ({ collection }) => {
 //ownprops contains all props of CollectionPage
 
 const mapStateToProps = (state,ownProps)=>({
-  collection:selectCollection(ownProps.match.params.collectionId)(state)
+collection:  selectCollection
 })
 
 export default connect(mapStateToProps)(CollectionPage)

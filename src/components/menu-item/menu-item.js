@@ -10,7 +10,8 @@ const MenuItem=({size,title,imageUrl,history,linkUrl,match})=>(
 
 className={`${size} menu-item`}
 
-onClick={()=>history.push(`${match.url}${linkUrl}`)}
+onClick={()=>{
+  history.push('shop'+`${match.url}${linkUrl}`)}}
 
 
     >
