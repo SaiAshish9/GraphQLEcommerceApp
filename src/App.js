@@ -6,6 +6,7 @@ import ShopPage from './pages/shop/shop'
 
 import CheckoutPage from './pages/checkout/checkout'
 
+// import {GlobalStyle} from './global.styles'
 
 import { createStructuredSelector} from 'reselect'
 
@@ -89,20 +90,24 @@ const App =({checkUserSession,currentUser})=> {
   // render(){
 
     return (
-    <div>
-         <Header />
-         <Switch>
-
-          <Route exact path='/' component={Homepage}/>
-          <Route  path='/shop' component={ShopPage}/>
-          <Route  exact path='/signin' component={SignIn} render={()=>currentUser?(<Redirect to='/' />):(<SignIn />)
-
-          }/>
-        <Route  exact path='/checkout' component={CheckoutPage} />
+      <div>
 
 
-        </Switch>
-    </div>
+
+       <Header />
+       <Switch>
+
+        <Route exact path='/' component={Homepage}/>
+        <Route  path='/shop' component={ShopPage}/>
+        <Route  exact path='/signin' component={SignIn} render={()=>currentUser?(<Redirect to='/' />):(<SignIn />)
+
+        }/>
+      <Route  exact path='/checkout' component={CheckoutPage} />
+
+
+      </Switch>
+
+</div>
     );
 
   // }

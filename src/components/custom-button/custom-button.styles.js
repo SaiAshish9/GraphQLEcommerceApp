@@ -2,13 +2,13 @@ import styled,{ css } from 'styled-components'
 
 
 const buttonStyles=css`
-background-color:black;
-color:white;
-border:none;
+background-color:white;
+color:black;
+border:1px solid black;
 &:hover{
-  background-color: white;
-  color: black;
-  border: 1px solid black;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
 }
 `
 

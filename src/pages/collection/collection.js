@@ -22,7 +22,7 @@ import {
 
 const CollectionPage = ({ collection,match }) => {
 
-// const {title,items} = collection
+const {title,items} = collection
 
   // const [title,setTitle]=useState(required.title)
   // const [items,setItems]=useState([])
@@ -67,7 +67,6 @@ const CollectionPage = ({ collection,match }) => {
 // // }
 // })
 
-console.log(collection);
 
   return (
 
@@ -75,17 +74,17 @@ console.log(collection);
 
 
     <CollectionPageContainer>
-      <CollectionTitle>title</CollectionTitle>
+      <CollectionTitle>{title}</CollectionTitle>
       <CollectionItemsContainer>
 
+        {items.map(item => (
+          <CollectionItem key={item.id} item={item} />
+        ))}
       </CollectionItemsContainer>
     </CollectionPageContainer>
   );
 };
 
-// {items.map(item => (
-//   <CollectionItem key={item.id} item={item} />
-// ))}
 // const CollectionPage=({collection})=>{
 //   console.log(collection);
 // return(
@@ -100,7 +99,7 @@ console.log(collection);
 //ownprops contains all props of CollectionPage
 
 const mapStateToProps = (state,ownProps)=>({
-collection:  selectCollection
+collection:  selectCollection(ownProps.match.params.collectionId)(state)
 })
 
 export default connect(mapStateToProps)(CollectionPage)
